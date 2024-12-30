@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:parking_flutter/screens/app.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,12 +14,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Parking',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: Container(
-        child: const Text('주차'),
-      ),
+          scaffoldBackgroundColor: Colors.white,
+          primaryColor: Colors.black,
+          visualDensity: VisualDensity.adaptivePlatformDensity),
+      home: const App(),
     );
   }
 }
