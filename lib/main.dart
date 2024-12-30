@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Parking',
       theme: ThemeData(
-          scaffoldBackgroundColor: Colors.white,
+          scaffoldBackgroundColor: const Color(0xFFEEF2F5),
           primaryColor: Colors.black,
           visualDensity: VisualDensity.adaptivePlatformDensity),
       home: const App(),

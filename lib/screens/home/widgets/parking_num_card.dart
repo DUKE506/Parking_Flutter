@@ -17,16 +17,9 @@ class ParkingNumCardWidget extends StatelessWidget {
       width: 90,
       height: 90,
       decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(6),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey,
-              blurRadius: 5.0,
-              spreadRadius: 0.0,
-              offset: const Offset(0, 0),
-            )
-          ]),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(6),
+      ),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -38,6 +31,9 @@ class ParkingNumCardWidget extends StatelessWidget {
                 fontSize: 16,
                 color: color,
               ),
+            ),
+            SizedBox(
+              height: 10,
             ),
             Text(
               parkingNum.toString(),
