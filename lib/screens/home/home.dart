@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:parking_flutter/screens/home/widgets/parking_num_card.dart';
+import 'package:parking_flutter/widgets/appBar.dart';
+import 'package:parking_flutter/widgets/button.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -73,36 +75,6 @@ class _HomeState extends State<Home> {
     );
   }
 
-  //아이콘 버튼튼
-  Widget _button() {
-    return ElevatedButton.icon(
-        style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.symmetric(vertical: 15.0),
-            backgroundColor: Color(0xff218fd3),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(6),
-            )),
-        onPressed: () => {},
-        label: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.add,
-              color: Colors.white,
-              size: 22,
-            ),
-            Text(
-              '입주민차량 등록',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ],
-        ));
-  }
-
   //입주민차량등록록
   Widget _carAdd() {
     return ClipRRect(
@@ -119,7 +91,15 @@ class _HomeState extends State<Home> {
             ),
           ),
           SizedBox(height: 20),
-          _button()
+          Button(
+            label: '입주민차량 등록',
+            icon: Icon(
+              Icons.add,
+              size: 22,
+              color: Colors.white,
+            ),
+            onPressed: () => {print('안녕')},
+          ),
         ]),
       ),
     );
@@ -143,7 +123,15 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appBar(),
+      appBar: Appbar(
+        title: '일동미라주 아파트',
+        icons: [
+          IconButton(
+            onPressed: () => {},
+            icon: Icon(Icons.notifications),
+          ),
+        ],
+      ),
       body: _bodyWidget(),
     );
   }

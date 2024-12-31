@@ -17,8 +17,9 @@ class ParkingNumCardWidget extends StatelessWidget {
       width: 90,
       height: 90,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Color(0xFFEEF2F5),
         borderRadius: BorderRadius.circular(6),
+        // border: Border.all(width: 1, color: Color.fromARGB(255, 206, 214, 219)),
       ),
       child: Center(
         child: Column(
