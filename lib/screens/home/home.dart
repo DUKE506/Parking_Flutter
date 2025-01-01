@@ -12,22 +12,22 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   //appbar
-  PreferredSizeWidget _appBar() {
-    return AppBar(
-      backgroundColor: const Color(0xFFEEF2F5),
-      title: Text(
-        '일동미라주아파트',
-        style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Color(0xff218FD3)),
-      ),
-      elevation: 0,
-      actions: [
-        IconButton(onPressed: () => {}, icon: Icon(Icons.notifications))
-      ],
-    );
-  }
+  // PreferredSizeWidget _appBar() {
+  //   return AppBar(
+  //     backgroundColor: const Color(0xFFEEF2F5),
+  //     title: Text(
+  //       '일동미라주아파트',
+  //       style: TextStyle(
+  //           fontSize: 20,
+  //           fontWeight: FontWeight.bold,
+  //           color: Color(0xff218FD3)),
+  //     ),
+  //     elevation: 0,
+  //     actions: [
+  //       IconButton(onPressed: () => {}, icon: Icon(Icons.notifications))
+  //     ],
+  //   );
+  // }
 
   //주차 현황
   Widget _parkingState() {
@@ -105,6 +105,7 @@ class _HomeState extends State<Home> {
     );
   }
 
+  //body
   Widget _bodyWidget() {
     return Padding(
       padding: const EdgeInsets.all(20.0),
