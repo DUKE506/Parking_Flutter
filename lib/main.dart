@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:parking_flutter/router.dart';
 import 'package:parking_flutter/screens/app.dart';
 
 void main() {
@@ -11,13 +12,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       title: 'Parking',
       theme: ThemeData(
           scaffoldBackgroundColor: const Color(0xFFEEF2F5),
           primaryColor: Colors.black,
           visualDensity: VisualDensity.adaptivePlatformDensity),
-      home: const App(),
+      // home: const App(),
     );
   }
 }
