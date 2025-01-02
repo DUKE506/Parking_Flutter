@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:parking_flutter/screens/parkingStatus/widgets/customTabBar.dart';
+import 'package:parking_flutter/screens/parkingStatus/widgets/parkingListWidget.dart';
 import 'package:parking_flutter/screens/parkingStatus/widgets/tabBar.dart';
 
 class ParkingStatus extends StatefulWidget {
@@ -18,7 +19,9 @@ class _ParkinStatusState extends State<ParkingStatus> {
   void initState() {
     super.initState();
     _currentIndex = 0;
-    _pageController = PageController();
+    _pageController = PageController(
+      initialPage: _currentIndex,
+    );
   }
 
   //탭 선택 함수
@@ -54,8 +57,24 @@ class _ParkinStatusState extends State<ParkingStatus> {
         body: Column(
           children: [
             SizedBox(height: 20),
-            CustomTabBar(),
+            CustomTabBar(
+              currentIndex: _currentIndex,
+              onTabSelected: onTabSelected,
+            ),
             SizedBox(height: 20),
+            Expanded(
+              child: PageView.builder(
+                  onPageChanged: (int index) {
+                    setState(() {
+                      _currentIndex = index;
+                    });
+                  },
+                  controller: _pageController,
+                  itemCount: 3,
+                  itemBuilder: (context, index) {
+                    return ParkingListWidget(pageNum: _currentIndex);
+                  }),
+            )
           ],
         ));
   }
