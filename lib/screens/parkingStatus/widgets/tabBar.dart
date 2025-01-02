@@ -32,6 +32,7 @@ class _TabBarWidgetState extends State<TabBarWidget>
   @override
   Widget build(BuildContext context) {
     return TabBar(
+      indicator: BoxDecoration(),
       controller: _tabController,
       tabs: [
         Tab(
@@ -47,6 +48,7 @@ class _TabBarWidgetState extends State<TabBarWidget>
       labelStyle: const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.bold,
+        backgroundColor: Colors.grey,
       ),
       unselectedLabelColor: Colors.grey,
       unselectedLabelStyle: const TextStyle(

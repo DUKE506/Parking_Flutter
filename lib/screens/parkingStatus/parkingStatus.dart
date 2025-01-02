@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:parking_flutter/screens/parkingStatus/widgets/customTabBar.dart';
 import 'package:parking_flutter/screens/parkingStatus/widgets/tabBar.dart';
 
 class ParkingStatus extends StatefulWidget {
@@ -10,6 +11,23 @@ class ParkingStatus extends StatefulWidget {
 }
 
 class _ParkinStatusState extends State<ParkingStatus> {
+  late int _currentIndex;
+  late final PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = 0;
+    _pageController = PageController();
+  }
+
+  //탭 선택 함수
+  void onTabSelected(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   //애빠
   PreferredSizeWidget _appBar() {
     return AppBar(
@@ -35,7 +53,9 @@ class _ParkinStatusState extends State<ParkingStatus> {
         appBar: _appBar(),
         body: Column(
           children: [
-            TabBarWidget(),
+            SizedBox(height: 20),
+            CustomTabBar(),
+            SizedBox(height: 20),
           ],
         ));
   }
