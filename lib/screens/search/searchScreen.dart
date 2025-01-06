@@ -11,10 +11,13 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   Widget _bodyWidget() {
-    return Column(
-      children: [
-        Searchbar(),
-      ],
+    return Container(
+      // color: Colors.white,
+      child: Column(
+        children: [
+          Searchbar(),
+        ],
+      ),
     );
   }
 
