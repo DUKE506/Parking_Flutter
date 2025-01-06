@@ -4,6 +4,7 @@ import 'package:parking_flutter/screens/home/home.dart';
 import 'package:parking_flutter/screens/parkingStatus/parkingStatus.dart';
 import 'package:parking_flutter/screens/scanner/scanner.dart';
 import 'package:parking_flutter/screens/scanner/scannerKo.dart';
+import 'package:parking_flutter/screens/search/searchScreen.dart';
 import 'package:parking_flutter/widgets/bottomNavBarWidget.dart';
 
 final GlobalKey<NavigatorState> rootNavKey = GlobalKey<NavigatorState>();
@@ -37,7 +38,11 @@ final router = GoRouter(
           GoRoute(
             path: '/scanner/korea',
             builder: (context, state) => Scannerko(),
-          )
+          ),
+          GoRoute(
+            path: '/search',
+            builder: (context, state) => SearchScreen(),
+          ),
         ]),
   ],
 );

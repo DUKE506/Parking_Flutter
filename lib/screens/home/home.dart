@@ -43,9 +43,14 @@ class _HomeState extends State<Home> {
                     color: Color(0xff000000),
                   ),
                   ParkingNumCardWidget(
-                    parkingNum: 52,
+                    parkingNum: 49,
                     title: '입주민',
                     color: Color(0xff218FD3),
+                  ),
+                  ParkingNumCardWidget(
+                    parkingNum: 3,
+                    title: '방문',
+                    color: Color(0xFF18AA1D),
                   ),
                   ParkingNumCardWidget(
                     parkingNum: 8,

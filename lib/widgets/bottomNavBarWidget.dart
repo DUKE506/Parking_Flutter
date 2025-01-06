@@ -21,7 +21,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
         context.go('/home');
         break;
       case 1:
-        context.go('/home');
+        context.go('/search');
         break;
       case 2:
         context.go('/home');
@@ -32,7 +32,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
   BottomNavigationBarItem _bottonNavigationBarItem(String icon, String label) {
     Map<String, IconData> icons = {
       'home': Icons.home,
-      'history': Icons.pageview,
+      'search': Icons.search,
       'user': Icons.person
     };
 
@@ -54,11 +54,11 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
       onTap: onTapPageSelected, // 간단히 함수 참조로 변경
       currentIndex: _currentBottomNavIndex,
       selectedItemColor: Color(0xff218fd3),
-      selectedLabelStyle: TextStyle(fontSize: 14),
-      unselectedLabelStyle: TextStyle(fontSize: 14),
+      selectedLabelStyle: TextStyle(fontSize: 12),
+      unselectedLabelStyle: TextStyle(fontSize: 12),
       items: [
         _bottonNavigationBarItem('home', '홈'),
-        _bottonNavigationBarItem('history', '주차현황'),
+        _bottonNavigationBarItem('search', '차량조회'),
         _bottonNavigationBarItem('user', '마이'),
       ],
     );

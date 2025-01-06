@@ -14,12 +14,11 @@ class ParkingNumCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 90,
-      height: 90,
+      width: 70,
+      height: 70,
       decoration: BoxDecoration(
         color: Color(0xFFEEF2F5),
         borderRadius: BorderRadius.circular(6),
-        // border: Border.all(width: 1, color: Color.fromARGB(255, 206, 214, 219)),
       ),
       child: Center(
         child: Column(
@@ -29,7 +28,7 @@ class ParkingNumCardWidget extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 14,
                 color: color,
               ),
             ),
@@ -39,7 +38,7 @@ class ParkingNumCardWidget extends StatelessWidget {
             Text(
               parkingNum.toString(),
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 16,
                 color: color,
                 fontWeight: FontWeight.bold,
               ),
