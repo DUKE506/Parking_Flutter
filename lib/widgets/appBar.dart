@@ -16,6 +16,7 @@ class _AppbarState extends State<Appbar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      scrolledUnderElevation: 0,
       backgroundColor: const Color(0xFFEEF2F5),
       title: Padding(
         padding: const EdgeInsets.only(left: 5),

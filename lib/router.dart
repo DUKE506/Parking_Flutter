@@ -26,7 +26,8 @@ final router = GoRouter(
         routes: [
           GoRoute(
             path: '/home',
-            pageBuilder: (context, state) => const MaterialPage(child: Home()),
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: Home()),
           ),
           GoRoute(
             path: '/parking/status',
@@ -42,7 +43,9 @@ final router = GoRouter(
           ),
           GoRoute(
             path: '/search',
-            builder: (context, state) => SearchScreen(),
+            pageBuilder: (context, state) => NoTransitionPage(
+              child: SearchScreen(),
+            ),
           ),
           GoRoute(
             path: '/search/detail',

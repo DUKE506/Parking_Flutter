@@ -11,6 +11,7 @@ class SearchDetailScreen extends StatefulWidget {
 class _SearchDetailScreenState extends State<SearchDetailScreen> {
   PreferredSizeWidget _appBar() {
     return AppBar(
+      scrolledUnderElevation: 0,
       backgroundColor: Colors.white,
       leading: IconButton(
         onPressed: () => {context.pop()},
@@ -41,7 +42,7 @@ class _SearchDetailScreenState extends State<SearchDetailScreen> {
         Text(
           value,
           style: TextStyle(
-            fontSize: 16,
+            fontSize: 15,
             fontWeight: FontWeight.bold,
             color: Color(0xff313131),
           ),

@@ -16,7 +16,10 @@ class _SearchScreenState extends State<SearchScreen> {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15),
+            topRight: Radius.circular(15),
+          ),
         ),
         child: SearchListWidget(),
       ),
