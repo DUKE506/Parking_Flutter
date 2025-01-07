@@ -24,7 +24,8 @@ class _AppbarState extends State<Appbar> {
           style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: Color(0xff218FD3)),
+              // color: Color(0xff218FD3),
+              color: Colors.black),
         ),
       ),
       elevation: 0,

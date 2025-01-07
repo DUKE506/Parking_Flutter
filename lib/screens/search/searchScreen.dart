@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parking_flutter/screens/search/widgets/searchBar.dart';
+import 'package:parking_flutter/screens/search/widgets/searchListWidget.dart';
 import 'package:parking_flutter/widgets/appBar.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -10,12 +11,30 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  Widget _searchAreaWidget() {
+    return Expanded(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: SearchListWidget(),
+      ),
+    );
+  }
+
   Widget _bodyWidget() {
     return Container(
       // color: Colors.white,
+
       child: Column(
         children: [
+          SizedBox(height: 20),
           Searchbar(),
+          SizedBox(
+            height: 40,
+          ),
+          _searchAreaWidget(),
         ],
       ),
     );

@@ -11,7 +11,6 @@ class _SearchbarState extends State<Searchbar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
       margin: EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
@@ -19,9 +18,11 @@ class _SearchbarState extends State<Searchbar> {
             child: TextField(
               decoration: InputDecoration(
                 hintText: '차량번호를 입력해주세요.',
-                suffixIcon: Icon(Icons.search),
+                prefixIcon: Icon(Icons.search),
+                suffixIcon: Icon(Icons.cancel),
                 filled: true,
                 fillColor: Colors.white,
+                contentPadding: EdgeInsets.only(right: 20, top: 15, bottom: 15),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(6),
                   borderSide: BorderSide(

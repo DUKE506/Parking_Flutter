@@ -40,7 +40,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
       icon: Icon(icons[icon]),
       activeIcon: Icon(
         icons[icon],
-        color: Color(0xff218fd3),
+        color: const Color(0xFF272727),
       ),
       label: label,
     );
@@ -53,7 +53,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
       elevation: 20,
       onTap: onTapPageSelected, // 간단히 함수 참조로 변경
       currentIndex: _currentBottomNavIndex,
-      selectedItemColor: Color(0xff218fd3),
+      selectedItemColor: const Color(0xFF272727),
       selectedLabelStyle: TextStyle(fontSize: 12),
       unselectedLabelStyle: TextStyle(fontSize: 12),
       items: [

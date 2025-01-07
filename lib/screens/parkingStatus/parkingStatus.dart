@@ -86,7 +86,7 @@ class _ParkinStatusState extends State<ParkingStatus> {
         style: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
-          color: const Color(0xff218FD3),
+          color: Colors.black,
         ),
       ),
     );
