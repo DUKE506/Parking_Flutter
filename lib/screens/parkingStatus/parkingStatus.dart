@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:parking_flutter/repository/parking/parking_repository.dart';
+import 'package:parking_flutter/providers/parkingCars_provider.dart';
 import 'package:parking_flutter/screens/parkingStatus/widgets/customTabBar.dart';
 import 'package:parking_flutter/screens/parkingStatus/widgets/parkingListWidget.dart';
-import 'package:parking_flutter/screens/parkingStatus/widgets/tabBar.dart';
 
-class ParkingStatus extends StatefulWidget {
+class ParkingStatus extends ConsumerStatefulWidget {
   const ParkingStatus({super.key});
 
   @override
-  State<ParkingStatus> createState() => _ParkinStatusState();
+  ConsumerState<ParkingStatus> createState() => _ParkinStatusState();
 }
 
-class _ParkinStatusState extends State<ParkingStatus> {
+class _ParkinStatusState extends ConsumerState<ParkingStatus> {
+  //탭 인덱스
   late int _currentIndex;
+  //탭 페이지 컨트롤러
   late final PageController _pageController;
-  late ParkingRepository parkingRepository;
-  bool isAnimating = false;
-  // 각 탭별 데이터를 저장할 Map
-  final Map<int, List<Map<String, dynamic>>> _cachedData = {};
 
-  final List<String> _types = ['All', 'RESIDENT', 'VISIT', 'OUTSIDER'];
+  bool isAnimating = false;
 
   @override
   void initState() {
@@ -35,28 +33,12 @@ class _ParkinStatusState extends State<ParkingStatus> {
     super.dispose();
   }
 
-  @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-
-    parkingRepository = ParkingRepository();
-    _preloadData();
-  }
-
-  Future<void> _preloadData() async {
-    final allData = await parkingRepository.getParkigList('parking');
-    setState(() {
-      _cachedData[0] = allData;
-      for (int i = 1; i < _types.length; i++) {
-        _cachedData[i] =
-            allData.where((data) => data['type'] == _types[i]).toList();
-      }
-    });
-  }
-
   //탭 선택 함수
   void onTabSelected(int index) {
+    print('인덱스 : ${index}');
+    final tab = ParkingTab.values[index];
+    ref.read(selectedTabProvider.notifier).state = tab;
+    print('riverpod tab 상태 : ${ref.read(selectedTabProvider.notifier).state}');
     setState(() {
       isAnimating = true;
       _currentIndex = index;
@@ -72,10 +54,9 @@ class _ParkinStatusState extends State<ParkingStatus> {
     });
   }
 
-  //애빠
+  //앱바
   PreferredSizeWidget _appBar() {
     return AppBar(
-      // backgroundColor: const Color(0xFFEEF2F5),
       backgroundColor: Colors.white,
       leading: IconButton(
         onPressed: () => {context.pop()},
@@ -92,29 +73,11 @@ class _ParkinStatusState extends State<ParkingStatus> {
     );
   }
 
-//주차 목록 데이터 조회
-  Future<List<Map<String, dynamic>>> _loadParkingList(int index) async {
-    final data = await parkingRepository.getParkigList('parking');
-    if (index == 0) {
-      return data;
-    }
-    return data.where((data) => data['type'] == _types[index]).toList();
-  }
-
-  Widget _dataList(int index) {
-    final data = _cachedData[index];
-
-    if (data == null) {
-      return Center(
-        child: CircularProgressIndicator(),
-      );
-    }
-
-    return ParkingListWidget(pageNum: 5, datas: data!);
-  }
-
   @override
   Widget build(BuildContext context) {
+    final selectedTab = ref.watch(selectedTabProvider);
+    final parkingData = ref.watch(filteredParkingProvider);
+
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: _appBar(),
@@ -134,13 +97,15 @@ class _ParkinStatusState extends State<ParkingStatus> {
                       // 애니메이션 중이 아닐 때만 인덱스 업데이트
                       setState(() {
                         _currentIndex = index;
+                        ref.read(selectedTabProvider.notifier).state =
+                            ParkingTab.values[index];
                       });
                     }
                   },
                   controller: _pageController,
-                  itemCount: _types.length,
+                  itemCount: ParkingTab.values.length,
                   itemBuilder: (context, index) {
-                    return _dataList(index);
+                    return ParkingListWidget(datas: parkingData);
                   }),
             )
           ],

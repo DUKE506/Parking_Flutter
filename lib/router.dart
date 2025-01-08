@@ -27,7 +27,7 @@ final router = GoRouter(
           GoRoute(
             path: '/home',
             pageBuilder: (context, state) =>
-                const NoTransitionPage(child: Home()),
+                NoTransitionPage(child: HomeScreen()),
           ),
           GoRoute(
             path: '/parking/status',

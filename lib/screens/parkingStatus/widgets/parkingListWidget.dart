@@ -1,30 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:parking_flutter/models/parkingCar.dart';
 
 class ParkingListWidget extends StatefulWidget {
-  const ParkingListWidget(
-      {super.key, required this.pageNum, this.ListCount, required this.datas});
-  final int pageNum;
-  final int? ListCount;
-  final List<Map<String, dynamic>> datas;
+  const ParkingListWidget({super.key, required this.datas});
+  final List<ParkingCar> datas;
 
   @override
   State<ParkingListWidget> createState() => _ParkingListWidgetState();
 }
 
 class _ParkingListWidgetState extends State<ParkingListWidget> {
-  String _getTypetoOwnerName(Map<String, dynamic> data) {
-    switch (data['type'].toString()) {
-      case 'RESIDENT':
-        return data['ownerName'].toString();
-      case 'OUTSIDER':
-        return '외부인';
-      case 'VISIT':
-        return '방문자';
-      default:
-        return '알수없음';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
@@ -43,17 +28,17 @@ class _ParkingListWidgetState extends State<ParkingListWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        widget.datas[index]['vehicleNumber'].toString(),
+                        widget.datas[index].carNumber.toString(),
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
-                      Text(widget.datas[index]['createdAt'].toString())
+                      Text('2025-01-08 07:54:24')
                     ],
                   ),
                   SizedBox(
                     height: 12,
                   ),
-                  Text(_getTypetoOwnerName(widget.datas[index])),
+                  Text(widget.datas[index].ownerType.labelKo),
                 ],
               ),
             ));

@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:parking_flutter/models/parkingCar.dart';
+import 'package:parking_flutter/providers/parkingCars_provider.dart';
 import 'package:parking_flutter/screens/home/widgets/parking_num_card.dart';
 import 'package:parking_flutter/widgets/appBar.dart';
 import 'package:parking_flutter/widgets/button.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class HomeScreen extends ConsumerStatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
   //주차 현황
-  Widget _parkingState() {
+  Widget _parkingState(List<ParkingCar> parkingCars) {
     return GestureDetector(
       onTap: () => {context.push('/parking/status')},
       child: ClipRRect(
@@ -38,22 +41,28 @@ class _HomeState extends State<Home> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ParkingNumCardWidget(
-                    parkingNum: 60,
+                    parkingNum: parkingCars.length,
                     title: '전체',
                     color: Color(0xff000000),
                   ),
                   ParkingNumCardWidget(
-                    parkingNum: 49,
-                    title: '입주민',
+                    parkingNum: parkingCars
+                        .where((p) => p.ownerType == CarOwnerType.resident)
+                        .length,
+                    title: '입주',
                     color: Color(0xff218FD3),
                   ),
                   ParkingNumCardWidget(
-                    parkingNum: 3,
+                    parkingNum: parkingCars
+                        .where((p) => p.ownerType == CarOwnerType.visitor)
+                        .length,
                     title: '방문',
                     color: Color(0xFF18AA1D),
                   ),
                   ParkingNumCardWidget(
-                    parkingNum: 8,
+                    parkingNum: parkingCars
+                        .where((p) => p.ownerType == CarOwnerType.outsider)
+                        .length,
                     title: '외부',
                     color: Color(0xffCB2727),
                   ),
@@ -97,12 +106,12 @@ class _HomeState extends State<Home> {
   }
 
   //body
-  Widget _bodyWidget() {
+  Widget _bodyWidget(List<ParkingCar> parkingCars) {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Column(
         children: [
-          _parkingState(),
+          _parkingState(parkingCars),
           SizedBox(
             height: 40,
           ),
@@ -117,6 +126,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    final allParkingCar = ref.watch(parkingCarProvider);
+
     return Scaffold(
       appBar: Appbar(
         title: '일동미라주 아파트',
@@ -127,7 +138,7 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      body: _bodyWidget(),
+      body: _bodyWidget(allParkingCar),
     );
   }
 }
